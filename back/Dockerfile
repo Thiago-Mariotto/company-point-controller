@@ -1,13 +1,14 @@
-FROM node:16.3.0
+FROM node:alpine
 
 WORKDIR /app
 
-COPY package.json .
-COPY package-lock.json .
+COPY package*.json /app
+
+RUN npm install -G mysql
 
 RUN npm install
 
-COPY . .
+COPY . /app
 
 EXPOSE 3000
 
