@@ -1,0 +1,30 @@
+CREATE DATABASE IF NOT EXISTS office;
+
+CREATE TABLE IF NOT EXISTS jobs (
+  id INT(6) AUTO_INCREMENT PRIMARY KEY,
+  job_name VARCHAR(30) NOT NULL,
+  job_description VARCHAR(50)
+);
+
+CREATE TABLE IF NOT EXISTS users (
+  id INT(6) AUTO_INCREMENT PRIMARY KEY,
+  firstname VARCHAR(30) NOT NULL,
+  lastname VARCHAR(30) NOT NULL,
+  role VARCHAR(10) NOT NULL DEFAULT "user",
+  job_id INT(6) NOT NULL,
+  salary DECIMAL(7, 2)
+);
+
+ALTER TABLE users ADD FOREIGN KEY ( job_id ) REFERENCES jobs ( id );
+
+CREATE TABLE IF NOT EXISTS point_check (
+  id INT(6) AUTO_INCREMENT PRIMARY KEY,
+  user_id INT(6) NOT NULL,
+  entry_time DATETIME NOT NULL,
+  entry_lunch DATETIME NOT NULL,
+  back_lunch DATETIME NOT NULL,
+  exit_time DATETIME NOT NULL,
+  job_date DATE NOT NULL
+);
+
+ALTER TABLE point_check ADD FOREIGN KEY ( user_id ) REFERENCES users ( id );
