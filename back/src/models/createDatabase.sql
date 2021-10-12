@@ -8,9 +8,11 @@ CREATE TABLE IF NOT EXISTS jobs (
 
 CREATE TABLE IF NOT EXISTS users (
   id INT(6) AUTO_INCREMENT PRIMARY KEY,
-  firstname VARCHAR(30) NOT NULL,
-  lastname VARCHAR(30) NOT NULL,
-  role VARCHAR(10) NOT NULL DEFAULT "user",
+  first_name VARCHAR(30) NOT NULL,
+  last_name VARCHAR(30) NOT NULL,
+  email VARCHAR(30) NOT NULL UNIQUE,
+  password VARCHAR(20) NOT NULL,
+  role VARCHAR(7) NOT NULL DEFAULT "user",
   job_id INT(6) NOT NULL,
   salary DECIMAL(7, 2)
 );
