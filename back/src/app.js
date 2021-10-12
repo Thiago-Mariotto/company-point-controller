@@ -4,8 +4,9 @@ const cors = require('cors');
 
 require('dotenv').config();
 
-const { errorHandler } = require('./middlewares/errorMiddleware');
+const { errorHandler } = require('./middlewares');
 const { checkLocation } = require('./controllers/checkLocation');
+
 const router = require('./routes');
 
 const app = express();
