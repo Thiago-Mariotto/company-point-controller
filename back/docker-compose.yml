@@ -3,6 +3,7 @@ version: "3"
 services: 
   mysqldb:
     image: mysql
+    container_name: 'database'
     restart: always
     env_file: ./.env
     environment:
@@ -24,7 +25,6 @@ services:
     image: node-point
     volumes:
       - ./:/app #Volumes mapeia o código que você está escrevendo em seu sistema para o ambiente do contêiner. 
-      - /app/node_modules #adiciona dependencias
     ports:
       - 3000:3000
     depends_on:
