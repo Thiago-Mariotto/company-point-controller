@@ -1,9 +1,11 @@
+const loginService = require('../../services/login');
+
 const makeLogin = async (req, res, _next) => {
   const { email, password } = req.body;
+  
+  const token = await loginService.validateUser(email, password);
 
-  console.log(email, password);
-
-  return res.status(200).send('ok');
+  return res.status(200).json({ token });
 };
 
 module.exports = {
