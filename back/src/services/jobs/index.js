@@ -5,6 +5,12 @@ const list = async () => {
   return users;
 };
 
+const find = async (id) => {
+  const job = await jobModel.find(id);
+
+  return job;
+};
+
 const register = async (job, description) => {
   const registeredId = await jobModel.register(job, description);
 
@@ -27,8 +33,12 @@ const update = async (id, job, description) => {
   if (updatedJob) return true;
 };
 
+const remove = async (id) => jobModel.remove(id);
+
 module.exports = {
   list,
   register,
   update,
+  find,
+  remove,
 };
