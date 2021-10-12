@@ -1,11 +1,6 @@
 /* eslint-disable no-unused-vars */
-const errorHandler = (err, req, res, _next) => {
-  // console.error(err.stack);
+const errorHandler = (err, req, res, _next) => 
 
-  console.log(err.message);
-  return res.status(500).send('Something broke!');
-};
+  res.status(500).send('Something broke!');
 
-module.exports = {
-  errorHandler,
-};
+module.exports = errorHandler;
