@@ -7,11 +7,11 @@ const jobs = async () => {
   return rows;
 };
 
-const findJob = async (id) => {
+const find = async (id) => {
   const conn = await connection();
   const [rows] = await conn.query('SELECT * FROM jobs WHERE id = ?', [id]);
 
-  return rows;
+  return rows[0];
 };
 
 const register = async (job, description) => {
@@ -41,9 +41,15 @@ const update = async (id, job, description) => {
   return rows;
 };
 
+const remove = async (id) => {
+  const conn = await connection();
+  await conn.query('DELETE FROM jobs WHERE id = ?', [id]);
+};
+
 module.exports = {
   jobs,
-  findJob,
+  find,
   register,
   update,
+  remove,
 };
