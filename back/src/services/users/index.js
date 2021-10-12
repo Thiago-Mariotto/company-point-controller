@@ -6,9 +6,15 @@ const list = async () => {
   return users;
 };
 
+const find = async (id) => {
+  const user = await userModel.find(id);
+
+  return user;
+};
+
 const register = async (user) => {
-  const { name, lastname, role, jobId, salary } = user;
-  const createdId = await userModel.register(name, lastname, role, jobId, salary);
+  const { name, lastname, role, jobId, salary, email, password } = user;
+  const createdId = await userModel.register(name, lastname, role, jobId, salary, email, password);
   
   const newUser = {
     id: createdId,
@@ -19,15 +25,23 @@ const register = async (user) => {
 };
 
 const update = async (user) => {
-  const { name, email, password, role } = user;
+  const { name, lastname, role, jobId, salary, email } = user;
 
-  const updatedUser = await userModel.update(name, email, password, role);
+  const updatedUser = await userModel.update(name, lastname, email, role, jobId, salary);
 
   return updatedUser;
 };
 
+const remove = async (id) => {
+  const removedUser = await userModel.remove(id);
+
+  return removedUser;
+};
+
 module.exports = {
   list,
+  find,
   register,
   update,
+  remove,
 };
