@@ -11,6 +11,18 @@ const list = async (req, res, next) => {
   }
 };
 
+const find = async (req, res, next) => {
+  try {
+    const { id } = req.params; 
+    const job = await jobService.find(id);
+
+    return res.status(200).json(job);
+  } catch (err) {
+    console.log(`Error in find job ${err.message}`);
+    next(err);
+  }
+};
+
 const register = async (req, res, next) => {
   try {
     const { job, description } = req.body;
@@ -38,8 +50,22 @@ const update = async (req, res, next) => {
   }
 };
 
+const remove = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    await jobService.remove(id);
+    
+    return res.status(204).end();
+  } catch (err) {
+    console.log(`Error in remove job: ${err.message}`);
+    next(err);
+  }
+};
+
 module.exports = {
   list,
   register,
   update,
+  find,
+  remove,
 };
